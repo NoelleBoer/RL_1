@@ -49,11 +49,13 @@ def experiment(n_actions, n_timesteps, n_repetitions, smoothing_window):
     # To Do: Write all your experiment code here
 
     # Assignment 1: e-greedy
-    epsilon = 0.01
-    average_rewards = run_repititions(n_actions, n_timesteps, n_repetitions, policy_type='egreedy', epsilon=epsilon)
+    epsilon = (0.01, 0.05, 0.1, 0.25)
     plot = LearningCurvePlot("e-greedy learning curve")
-    plot.add_curve(average_rewards, label="raw")
-    plot.add_curve(smooth(average_rewards, window=smoothing_window), label="smoothed")
+
+    for e in epsilon:
+        average_rewards = run_repititions(n_actions, n_timesteps, n_repetitions, policy_type='egreedy', epsilon=e)
+        plot.add_curve(smooth(average_rewards, window=smoothing_window), label=f'epsilon: {e}')
+
     plot.save(name="e-greedy.png")
 
     # Assignment 2: Optimistic init
