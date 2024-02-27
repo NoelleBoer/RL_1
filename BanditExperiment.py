@@ -59,8 +59,24 @@ def experiment(n_actions, n_timesteps, n_repetitions, smoothing_window):
     plot.save(name="e-greedy.png")
 
     # Assignment 2: Optimistic init
+    learning_rate = (0.1,0.5,1.0,2.0)
+    plot = LearningCurvePlot("Optimistic Initialization learning curve")
+
+    for r in learning_rate:
+    	average_rewards = run_repititions(n_actions, n_timesteps, n_repetitions, policy_type='oi', initial_value=r)
+    	plot.add_curve(smooth(average_rewards, window=smoothing_window), label=f'Initial_value: {r}')
+
+    plot.save(name="oi.png")
 
     # Assignment 3: UCB
+    exploration_rate = (0.01,0.05,0.1,0.25,0.5,1.0)
+    plot = LearningCurvePlot("UCB learning curve")
+
+    for e in exploration_rate:
+    	average_rewards = run_repititions(n_actions, n_timesteps, n_repetitions, policy_type='ucb', c=e)
+    	plot.add_curve(smooth(average_rewards, window=smoothing_window), label=f'Exploration Rate: {e}')
+
+    plot.save(name="ucb.png")
 
     # Assignment 4: Comparison
 
