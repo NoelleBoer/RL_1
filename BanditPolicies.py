@@ -6,6 +6,8 @@ Practical for course 'Reinforcement Learning',
 Bachelor AI, Leiden University, The Netherlands
 2021
 By Thomas Moerland
+
+Own code added by Daniël Zee (s2063131) and Noëlle Boer (s2505169)
 """
 import numpy as np
 from BanditEnvironment import BanditEnvironment
